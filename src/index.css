@@ -31,11 +31,11 @@ canvas {
   @apply flex items-center justify-center;
 }
 
-@utility scrim-max-width {
+@utility screen-max-width {
   margin-inline-start: auto;
   margin-inline-end: auto;
   position: relative;
-  max-width: 1120px;
+  max-width: 1200px;
 }
 
 @utility nav-height {
@@ -43,7 +43,7 @@ canvas {
 }
 
 @utility btn {
-  @apply bg-blue hover:text-blue hover:border-blue my-5 rounded-3xl border border-transparent px-5 py-2 hover:border hover:bg-transparent;
+  @apply bg-blue hover:text-blue hover:border-blue cursor-pointer my-5 rounded-3xl border border-transparent px-5 py-2 hover:border hover:bg-transparent;
 }
 
 @utility color-container {
