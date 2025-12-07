@@ -99,7 +99,7 @@ const VideoCarousel = () => {
     } else {
       gsap.ticker.remove(animUpdate);
     }
-  }, [videoId, startPlay]);
+  }, [videoId, startPlay, isPlaying]);
 
   useEffect(() => {
     if (loadedData.length > 3) {
@@ -179,14 +179,14 @@ const VideoCarousel = () => {
 
       <div className="flex-center relative mt-10">
         <div className="flex-center rounded-full bg-gray-300 px-7 py-5 backdrop-blur">
-          {videoRef.current.map((_, i) => (
+          {hightlightsSlides.map((_, i) => (
             <span
               key={i}
-              className="relative mx-2 h-3 w-3 cursor-pointer rounded-full bg-gray-200"
+              className="relative mx-2 size-3 rounded-full bg-gray-200"
               ref={(el) => (videoDivRef.current[i] = el)}
             >
               <span
-                className="absolute h-full w-full rounded-full"
+                className="absolute size-full rounded-full"
                 ref={(el) => (videoSpanRef.current[i] = el)}
               />
             </span>

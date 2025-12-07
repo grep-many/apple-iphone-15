@@ -43,7 +43,7 @@ canvas {
 }
 
 @utility btn {
-  @apply bg-blue hover:text-blue hover:border-blue cursor-pointer my-5 rounded-3xl border border-transparent px-5 py-2 hover:border hover:bg-transparent;
+  @apply bg-blue hover:text-blue hover:border-blue my-5 cursor-pointer rounded-3xl border border-transparent px-5 py-2 hover:border hover:bg-transparent;
 }
 
 @utility color-container {
@@ -51,11 +51,11 @@ canvas {
 }
 
 @utility size-btn-container {
-  @apply ml-3 flex items-center cursor-pointer justify-center gap-1 rounded-full bg-gray-300 p-1 backdrop-blur;
+  @apply ml-3 flex cursor-pointer items-center justify-center gap-1 rounded-full bg-gray-300 p-1 backdrop-blur;
 }
 
 @utility size-btn {
-  @apply flex h-10 w-10 items-center justify-center cursor-pointer rounded-full bg-white text-sm text-black transition-all;
+  @apply flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white text-sm text-black transition-all;
 }
 
 @utility common-padding {
@@ -87,7 +87,7 @@ canvas {
 }
 
 @utility control-btn {
-  @apply flex-center ml-4 rounded-full bg-gray-300 p-4 backdrop-blur cursor-pointer;
+  @apply flex-center ml-4 cursor-pointer rounded-full bg-gray-300 p-4 backdrop-blur;
 }
 
 @utility hero-title {

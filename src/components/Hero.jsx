@@ -13,14 +13,14 @@ const Hero = () => {
     const video = videoRef.current.control;
     if (!video) return;
 
-    const loopStart = video.duration - 0.9  ;
+    const loopStart = video.duration - 0.9;
     if (video.currentTime >= video.duration) {
       video.currentTime = loopStart;
-      video.playbackRate =0.5;
+      video.playbackRate = 0.5;
       video.play();
     }
   };
-  
+
   const handleResize = () => {
     const video = videoRef.current;
     const isMobile = window.innerWidth < 768;
@@ -49,20 +49,8 @@ const Hero = () => {
   }, [heroVideo, smallHeroVideo]);
 
   React.useEffect(() => {
-    const video = videoRef.current.control;
-    if (!video) return;
-    video.addEventListener("timeupdate", loopEnd);
-
     window.addEventListener("resize", handleResize);
-    if (videoRef.current.control) video.addEventListener("timeupdate", loopEnd);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      video.removeEventListener("timeupdate", loopEnd);
-      if (videoRef?.current?.control || videoRef?.current?.source) {
-        videoRef.current.control = null;
-        videoRef.current.source = null;
-      }
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, [videoRef]);
 
   return (
@@ -78,6 +66,7 @@ const Hero = () => {
             muted
             playsInline
             className="pointer-events-none"
+            onEnded={loopEnd}
           >
             <source
               ref={(el) => (videoRef.current.source = el)}
