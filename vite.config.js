@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   base: "/apple-iphone-15",
   plugins: [react(), tailwindcss()],
+  assetsInclude: ["**/*.glb"],
   resolve: {
     alias: {
       "~": "/",
