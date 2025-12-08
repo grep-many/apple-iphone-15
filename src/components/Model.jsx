@@ -97,14 +97,14 @@ const Model = () => {
             <p className="mb-5 text-center text-sm font-light">{model.title}</p>
             <div className="flex-center">
               <ul className="color-container">
-                {models.map((model) => (
+                {models.map((variant) => (
                   <li
-                    key={model.id}
-                    className="mx-2 size-6 cursor-pointer rounded-full"
+                    key={variant.id}
+                    className={`mx-2 size-6 cursor-pointer rounded-full ${variant.color[0]===model.color[0]&&"border-2 border-black"}`}
                     style={{
-                      backgroundColor: model.color[0],
+                      backgroundColor: variant.color[0],
                     }}
-                    onClick={() => setModel(model)}
+                    onClick={() => setModel(variant)}
                   ></li>
                 ))}
               </ul>
