@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import HighLights from "@/components/HighLights";
 import Model from "./components/Model";
 import Features from "./components/Features";
+import HowItWorks from "./components/HowItWorks";
 
 const App = () => (
   <>
@@ -11,6 +12,7 @@ const App = () => (
     <HighLights />
     <Model />
     <Features />
+    <HowItWorks />
   </>
 );
 
