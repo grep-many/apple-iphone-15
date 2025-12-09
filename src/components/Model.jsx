@@ -130,6 +130,7 @@ const Model = () => {
                 ))}
               </ul>
               <span className="size-btn-container">
+                {/* eslint-disable react-hooks/refs */}
                 {sizes.map(({ label, value }, i) => (
                   <button
                     key={label}

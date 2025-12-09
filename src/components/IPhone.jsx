@@ -20,7 +20,7 @@ const IPhone = React.forwardRef((props, ref) => {
 
   const texture = useTexture(props.texture);
 
-  const changeColor = (color) => {
+  const changeColor = React.useCallback((color) => {
     Object.entries(materials).map((material) => {
       // these are the material names that can't be changed color
       if (
@@ -34,7 +34,7 @@ const IPhone = React.forwardRef((props, ref) => {
       }
       material[1].needsUpdate = true;
     });
-  };
+  },[materials]);
 
   React.useImperativeHandle(ref, () => ({
     change(color) {
@@ -44,7 +44,7 @@ const IPhone = React.forwardRef((props, ref) => {
 
   React.useEffect(() => {
     changeColor(models[0].color[0]);
-  }, [materials]);
+  }, [materials, changeColor]);
 
   return (
     <group {...props} dispose={null}>
