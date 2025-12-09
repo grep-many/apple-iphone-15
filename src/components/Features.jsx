@@ -15,7 +15,7 @@ const Features = () => {
       },
       onComplete: () => {
         videoRef.current.play();
-      }
+      },
     });
     animateWithGsap("#features_title", {
       y: 0,

@@ -10,12 +10,10 @@ import { models, sizes } from "../constants";
 import { animateWithGsapTimeline } from "../utils";
 
 const Model = () => {
-  const [size, setSize] = React.useState("small");
-  const [model, setModel] = React.useState({
-    title: "iPhone 15 pro in Natural Titanium",
-    color: ["#8F8A81", "#FFE7B9", "#6F6C64"],
-    img: yellowImg,
-  });
+  const sizeBtnRef = React.useRef([]);
+  const size = React.useRef("small");
+  const modelName = React.useRef(null);
+  const modelRef = React.useRef([]);
 
   const cameraControlSmall = React.useRef();
   const cameraControlLarge = React.useRef();
@@ -23,27 +21,47 @@ const Model = () => {
   const small = React.useRef(new THREE.Group());
   const large = React.useRef(new THREE.Group());
 
-  const [smallRotation, setSmallRotation] = React.useState(0);
-  const [largeRotation, setLargeRotation] = React.useState(0);
+  const smallRotation = React.useRef(0);
+  const largeRotation = React.useRef(0);
 
   const tl = gsap.timeline();
 
-  React.useEffect(() => {
-    if (size === "large") {
-      animateWithGsapTimeline(tl, small, smallRotation, "#view1", "#view2", {
+  const setSmallRotation = (val) => (smallRotation.current = val);
+  const setLargeRotation = (val) => (largeRotation.current = val);
+
+  const handleVariantChange = ({ title, color }) => {
+    if (!modelName?.current || !modelRef?.current) return;
+    modelName.current.textContent = title;
+    modelRef.current.forEach((model) => {
+      model?.change?.(color);
+    });
+  };
+
+  const handleSize = (value, i) => {
+    if (!size?.current || !sizeBtnRef?.current) return;
+    size.current = value;
+    sizeBtnRef.current.forEach((el) => {
+      el.classList.remove("bg-white!");
+      el.classList.remove("text-black!");
+    });
+    sizeBtnRef.current[i].classList.add("bg-white!");
+    sizeBtnRef.current[i].classList.add("text-black!");
+
+    if (size.current === "large") {
+      animateWithGsapTimeline(tl, small, smallRotation.current, "#view1", "#view2", {
         transform: "translateX(-100%)",
         duration: 2,
       });
       return;
     }
-    if (size === "small") {
-      animateWithGsapTimeline(tl, large, largeRotation, "#view2", "#view1", {
+    if (size.current === "small") {
+      animateWithGsapTimeline(tl, large, largeRotation.current, "#view2", "#view1", {
         transform: "translateX(0)",
         duration: 2,
       });
       return;
     }
-  }, [size]);
+  };
 
   useGSAP(() => {
     gsap.to("#heading", {
@@ -54,6 +72,7 @@ const Model = () => {
       opacity: 1,
     });
   }, []);
+
   return (
     <section className="common-padding">
       <div className="screen-max-width">
@@ -69,8 +88,8 @@ const Model = () => {
               gsapType="view1"
               controlRef={cameraControlSmall}
               setRotationState={setSmallRotation}
-              item={model}
-              size={size}
+              texture={yellowImg}
+              ref={(el) => (modelRef.current[0] = el)}
             />
             <ModelView
               index={2}
@@ -78,8 +97,8 @@ const Model = () => {
               gsapType="view2"
               controlRef={cameraControlLarge}
               setRotationState={setLargeRotation}
-              item={model}
-              size={size}
+              texture={yellowImg}
+              ref={(el) => (modelRef.current[1] = el)}
             />
             <Canvas
               className="size-full"
@@ -94,35 +113,34 @@ const Model = () => {
             </Canvas>
           </div>
           <div className="mx-auto w-full">
-            <p className="mb-5 text-center text-sm font-light">{model.title}</p>
+            <p className="mb-5 text-center text-sm font-light" ref={modelName}>
+              {models[0].title}
+            </p>
             <div className="flex-center">
               <ul className="color-container">
-                {models.map((variant) => (
+                {models.map(({ id, color, title }) => (
                   <li
-                    key={variant.id}
-                    className={`mx-2 size-6 cursor-pointer rounded-full ${variant.color[0]===model.color[0]&&"border-2 border-black"}`}
+                    key={id}
+                    className="mx-2 size-6 cursor-pointer rounded-full"
                     style={{
-                      backgroundColor: variant.color[0],
+                      backgroundColor: color[0],
                     }}
-                    onClick={() => setModel(variant)}
+                    onClick={() => handleVariantChange({ title, color })}
                   ></li>
                 ))}
               </ul>
-              <button className="size-btn-container">
-                {sizes.map(({ label, value }) => (
-                  <span
+              <span className="size-btn-container">
+                {sizes.map(({ label, value }, i) => (
+                  <button
                     key={label}
-                    className="size-btn"
-                    style={{
-                      backgroundColor: size === value ? "white" : "transparent",
-                      color: size === value ? "black" : "white",
-                    }}
-                    onClick={() => setSize(value)}
+                    ref={(el) => (sizeBtnRef.current[i] = el)}
+                    className={`size-btn bg-transparent text-white ${size.current === value && "bg-white! text-black!"}`}
+                    onClick={() => handleSize(value, i)}
                   >
                     {label}
-                  </span>
+                  </button>
                 ))}
-              </button>
+              </span>
             </div>
           </div>
         </div>

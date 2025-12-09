@@ -7,19 +7,20 @@ Title: Apple iPhone 15 Pro Max Black
 */
 
 import * as THREE from "three";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 
 // ✅ Correct Vite import for scene.glb
 import sceneModel from "../assets/models/scene.glb";
+import { models } from "../constants";
 
-function IPhone(props) {
+const IPhone = React.forwardRef((props, ref) => {
   // ❗ Only change → use imported GLB path
   const { nodes, materials } = useGLTF(sceneModel);
 
-  const texture = useTexture(props.item.img);
+  const texture = useTexture(props.texture);
 
-  useEffect(() => {
+  const changeColor = (color) => {
     Object.entries(materials).map((material) => {
       // these are the material names that can't be changed color
       if (
@@ -29,11 +30,21 @@ function IPhone(props) {
         material[0] !== "jlzuBkUzuJqgiAK" &&
         material[0] !== "xNrofRCqOXXHVZt"
       ) {
-        material[1].color = new THREE.Color(props.item.color[0]);
+        material[1].color = new THREE.Color(color);
       }
       material[1].needsUpdate = true;
     });
-  }, [materials, props.item]);
+  };
+
+  React.useImperativeHandle(ref, () => ({
+    change(color) {
+      changeColor(color[0]);
+    },
+  }));
+
+  React.useEffect(() => {
+    changeColor(models[0].color[0]);
+  }, [materials]);
 
   return (
     <group {...props} dispose={null}>
@@ -258,7 +269,7 @@ function IPhone(props) {
       />
     </group>
   );
-}
+});
 
 export default IPhone;
 
