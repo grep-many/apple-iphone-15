@@ -6,6 +6,9 @@ export default defineConfig({
   base: "/apple-iphone-15",
   plugins: [react(), tailwindcss()],
   assetsInclude: ["**/*.glb"],
+  build: {
+    chunkSizeWarningLimit: 700,
+  },
   resolve: {
     alias: {
       "~": "/",

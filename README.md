@@ -1,16 +1,147 @@
-# React + Vite
+# Apple iPhone 15 — 3D Product Showcase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Build](https://img.shields.io/github/actions/workflow/status/grep-many/apple-iphone-15/deploy.yml?label=Build)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![React](https://img.shields.io/badge/React-19-61DAFB)
+![Three.js](https://img.shields.io/badge/Three.js-R0.181-black)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.1-38BDF8)
+![Vite](https://img.shields.io/badge/Vite-7.2-purple)
 
-Currently, two official plugins are available:
+A fully-interactive **3D iPhone 15 product showcase** built with **React 19**, **Three.js via @react-three/fiber**, **TailwindCSS 4**, and **Vite 7**. Features immersive 3D models, video highlights, and smooth page animations.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Overview
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+**Apple iPhone 15 Showcase** is a modern web portfolio to demonstrate Apple’s latest iPhone 15 in a highly interactive 3D environment. It provides users with an immersive product exploration experience using videos, 3D models, and animation effects.
 
-## Expanding the ESLint configuration
+You get:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 📱 **Interactive 3D iPhone model** with lights and scene effects
+- 🎥 **Video highlights** showing features and design
+- 🖼️ Smooth animations and carousel highlights
+- 🌐 Fully responsive UI for desktop and mobile
+- ⚡ Ultra-fast performance with **Vite 7**
+
+---
+
+## 🖥️ Desktop Preview
+
+![desktop-preview](./screenshots/preview.png)
+
+---
+
+## 📦 Tech Stack
+
+### **Frontend**
+
+- React 19
+- Vite 7
+- TailwindCSS 4
+- React Router (if used)
+- GSAP React for animations
+
+### **3D & Animation**
+
+- @react-three/fiber
+- @react-three/drei
+- GSAP
+- Three.js 0.181
+
+### **Developer Tools**
+
+- ESLint 9
+- Prettier 3 + Tailwind Prettier plugin
+- SWC React plugin
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/grep-many/apple-iphone-15.git
+cd apple-iphone-15
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Start Development Server
+
+```bash
+npm run dev
+```
+
+### 4. Build for Production
+
+```bash
+npm run build
+```
+
+### 5. Preview Production Build
+
+```bash
+npm run preview
+```
+
+---
+
+## 📁 Folder Structure
+
+```bash
+.
+├── public                      # Favicons, manifest, icons
+├── screenshots                  # Preview images
+├── src
+│   ├── assets
+│   │   ├── images              # Product, icons, background images
+│   │   ├── models              # 3D models (scene.glb)
+│   │   └── videos              # Video highlights
+│   ├── components              # Hero, Navbar, Features, Footer, VideoCarousel...
+│   ├── constants               # Static data for highlights, features
+│   ├── utils                    # Helper functions
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── package.json
+├── vite.config.js
+└── LICENSE
+```
+
+---
+
+## 🚀 Features
+
+- 🌐 **3D iPhone Experience** with lights and animations
+- 🎬 **Video highlights & carousel**
+- 💡 Animated features section using GSAP
+- 📱 Fully responsive modern UI
+- ⚡ Ultra-fast development and build with Vite
+
+---
+
+## 📜 Scripts
+
+```json
+{
+  "dev": "vite",
+  "build": "vite build",
+  "lint": "eslint .",
+  "preview": "vite preview"
+}
+```
+
+---
+
+## 🪪 License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
+This project is open-source under the **MIT License**.
+
+---

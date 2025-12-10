@@ -20,21 +20,24 @@ const IPhone = React.forwardRef((props, ref) => {
 
   const texture = useTexture(props.texture);
 
-  const changeColor = React.useCallback((color) => {
-    Object.entries(materials).map((material) => {
-      // these are the material names that can't be changed color
-      if (
-        material[0] !== "zFdeDaGNRwzccye" &&
-        material[0] !== "ujsvqBWRMnqdwPx" &&
-        material[0] !== "hUlRcbieVuIiOXG" &&
-        material[0] !== "jlzuBkUzuJqgiAK" &&
-        material[0] !== "xNrofRCqOXXHVZt"
-      ) {
-        material[1].color = new THREE.Color(color);
-      }
-      material[1].needsUpdate = true;
-    });
-  },[materials]);
+  const changeColor = React.useCallback(
+    (color) => {
+      Object.entries(materials).map((material) => {
+        // these are the material names that can't be changed color
+        if (
+          material[0] !== "zFdeDaGNRwzccye" &&
+          material[0] !== "ujsvqBWRMnqdwPx" &&
+          material[0] !== "hUlRcbieVuIiOXG" &&
+          material[0] !== "jlzuBkUzuJqgiAK" &&
+          material[0] !== "xNrofRCqOXXHVZt"
+        ) {
+          material[1].color = new THREE.Color(color);
+        }
+        material[1].needsUpdate = true;
+      });
+    },
+    [materials],
+  );
 
   React.useImperativeHandle(ref, () => ({
     change(color) {
